@@ -107,13 +107,14 @@ class PricePerFeet extends Component {
                 <input className="input" type="number" placeholder={"days"} name="days" total="total"
                 onChange={this.handelChange} />
                 <br/>
+                <button className="button" onClick={this.total} >Submit</button>
+                <br/>
                 <div className="checkbox--container">
                 <input className="checkbox--input" type="checkbox" name="powerWash"  onChange={this.washChange}/>
                 <label className="label">Power wash</label>
                 <input className="input" type="checkbox" name="mast" onChange={this.mastChange}/>
                 <label className="label">Lift Mast</label>
                 </div>
-                <button className="button" onClick={this.total} >Submit</button>
                 <div><h1 className="total">Total: {this.state.total}€</h1></div>
             </form>
             {/* <h2>Summary</h2>
