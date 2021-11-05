@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./PricePerFeet.css"
 
+
 class PricePerFeet extends Component {
     constructor() {
         super()
@@ -9,11 +10,15 @@ class PricePerFeet extends Component {
             feet: "",
             math:"",
             days:"",
-            total: ""
+            total: "",
+            powerWash: true,
+            mast: true
         }
         this.handelChange = this.handelChange.bind(this)
         this.math = this.math.bind(this)
         this.total = this.total.bind(this)
+        this.washChange = this.washChange.bind(this)
+        this.mastChange = this.mastChange.bind(this)
     }
     handelChange(e) {
       
@@ -39,7 +44,48 @@ class PricePerFeet extends Component {
             }
         })
     }
-
+    washChange() {
+        this.setState(prevState => {
+            
+            return {
+             powerWash: !prevState.powerWash
+            }
+        })
+        if (this.state.powerWash === true) {
+            this.setState(prevState => {
+                return {
+                    total: prevState.total + 150
+                }
+            })
+        } else {
+            this.setState(prevState => {
+                return {
+                    total: prevState.total - 150
+                }
+            })
+        }
+    }
+    mastChange() {
+        this.setState(prevState => {
+            
+            return {
+                mast: !prevState.mast
+            }
+        })
+        if (this.state.mast === true) {
+            this.setState(prevState => {
+                return {
+                    total: prevState.total + 150
+                }
+            })
+        } else {
+            this.setState(prevState => {
+                return {
+                    total: prevState.total - 150
+                }
+            })
+        }
+    }
 
     render() {
        
@@ -62,13 +108,13 @@ class PricePerFeet extends Component {
                 onChange={this.handelChange} />
                 <br/>
                 <div className="checkbox--container">
-                <input className="input" type="checkbox" name="powerWash"></input>
+                <input className="checkbox--input" type="checkbox" name="powerWash"  onChange={this.washChange}/>
                 <label className="label">Power wash</label>
-                <input className="input" type="checkbox" name="mast"></input>
+                <input className="input" type="checkbox" name="mast" onChange={this.mastChange}/>
                 <label className="label">Lift Mast</label>
                 </div>
                 <button className="button" onClick={this.total} >Submit</button>
-                <div><h1 className="total">Total: {this.state.total}</h1></div>
+                <div><h1 className="total">Total: {this.state.total}€</h1></div>
             </form>
             {/* <h2>Summary</h2>
             <h3> Name: {this.state.name} </h3>
